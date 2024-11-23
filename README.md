@@ -1,2 +1,5 @@
-|Swin|DesNet|CLIP|
-|99%|77%|68%|
+| Model   | Accuracy |
+|---------|----------|
+| Swin    | 99%      |
+| DesNet  | 77%      |
+| CLIP    | 68%      |
