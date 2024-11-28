@@ -5,9 +5,10 @@ import User from './assets/user.png';
 
 function App() {
   const [inputState, setInputState] = useState('');
-  const [color, setColor] = useState('bg-slate-900');
+  const [color, setColor] = useState('bg-claudeBackground');
   const [textColor, setTextColor] = useState('text-white');
-  const [bubbleColor, setBubbleColor] = useState('bg-slate-600');
+  const [bubbleColor, setBubbleColor] = useState('bg-claudeBubble');
+  const [chats, setChats] = useState(0);
   const [messages, setMessages] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [FAQ, setFAQ] = useState([{'Question': 'What is Antaeus?', 'Answer': 'Antaeus is a chatbot that helps you with your queries.'}, {'Question': 'How can I use Antaeus?', 'Answer': 'You can use Antaeus by typing your queries in the chatbox.'},{
@@ -16,6 +17,9 @@ function App() {
 
   const messagesEndRef = useRef(null);
 
+  const handleFAQ = (e) => {
+    setMessages([...messages, e.target.innerText]);
+  };
   const handleChange = (e) => {
     setInputState(e.target.value);
     console.log('Input state changed:', inputState);
@@ -44,7 +48,7 @@ function App() {
 
   return (
     <>
-      <div className={`flex flex-col justify-between items-center min-h-screen mx-auto`}>
+      <div className={`flex flex-col justify-between items-center min-h-screen mx-auto `}>
         <header className={`flex sticky top-0 justify-between items-center px-4 bg-gray-800 w-full p-4 z-10 shadow-md shadow-red-100 ${textColor}`}>
           <div className="flex items-center">
             <button onClick={toggleSidebar} className={`p-2 ${textColor} text-4xl`}>
@@ -61,15 +65,15 @@ function App() {
             <div className='p-4 self-end align-text-bottom w-full overflow-y-auto '>
               {messages.map((message, index) => (
                 <span key={index}>
-                  <div className=' flex justify-end items-center '>
-                    <div className={`${bubbleColor} p-3 rounded-lg text-white text-lg max-w-xl text-wrap break-words mt-5`}>
+                  <div className=' flex justify-end items-center mb-8 '>
+                    <div className={`${bubbleColor} p-3 rounded-lg   shadow-lg text-gray-800 text-lg max-w-xl text-wrap break-words `}>
                       <p>{message}</p>
                     </div>
-                    <span> <img src={User} width={50} height={50} /> </span>
+                    <span> <img src={User} className='rounded-md' width={50} height={50} /> </span>
                   </div>
-                  <div className=' flex justify-start items-center'>
+                  <div className=' flex justify-start items-center mb-8 '>
                     <span> <img src={Image} width={50} height={50} /> </span>
-                    <div className={`${bubbleColor} max-w-xl text-wrap break-words p-3 mt-5 rounded-lg text-white text-lg`}>
+                    <div className={`${bubbleColor} max-w-xl shadow-md text-gray-800 text-wrap break-words p-3  rounded-lg text-lg`}>
                       <p>{message}</p>
                     </div>
                   </div>
@@ -83,7 +87,7 @@ function App() {
           <img src={Image} width={180} height={180} className='self-center mx-auto' />
           <div className='flex gap-2'>
             {FAQ.map((faq, index) => (
-              <div className="max-w-sm rounded-lg overflow-hidden shadow-lg  ">
+              <div className="max-w-sm rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:transform hover:-translate-y-2 ease-in-out duration-150  " onClick={handleFAQ}>
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">{FAQ[index]['Question']}</div>
                   <p className="text-gray-700 text-base">
@@ -99,11 +103,12 @@ function App() {
             ))}
           </div>
         </div>
-        <div className="relative w-full flex justify-center">
+        <div className={`flex justify-center items-center fixed bottom-0 right-0  left-0  transform transition-transform duration-800 ease-in-out ${messages.length === 0 ? '-translate-y-56' : 'translate-y-0'} ${color}`}>
           <input
+
             type="text"
             placeholder="Enter your name"
-            className={`p-2 border-gray-300 color-gray-300 w-full md:w-3/5 bg-gray-100  rounded-3xl mb-5 focus:outline-none text-blue-950 transform transition-transform duration-800 ease-in-out ${messages.length === 0 ? '-translate-y-56' : 'translate-y-0'}`}
+            className={`p-2 border-2 mt05 color-gray-300 w-full md:w-3/5 bg-claudeBackground border-orange-30  rounded-3xl mb-0 focus:outline-none text-blue-950 `}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />

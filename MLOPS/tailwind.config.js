@@ -4,7 +4,12 @@ export default {
     "./index.html", "./src/**/*.{js,jsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        claudeBackground: '#f8f4ec',
+        claudeBubble: '#f4f4ec',
+      }
+    },
   },
   plugins: [],
 }
