@@ -16,7 +16,6 @@ import timeit
 import cv2
 
 os.environ["CUDA_VISIBLE_DEVICES"] = ''
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 import gc
 
@@ -51,7 +50,7 @@ if __name__ == '__main__':
     model = nn.DataParallel(model)
     
     print("=> loading checkpoint '{}'".format(snap_to_load))
-    checkpoint = torch.load(path.join(models_folder, snap_to_load), map_location=device)
+    checkpoint = torch.load(path.join(models_folder, snap_to_load), map_location='cpu')
     loaded_dict = checkpoint['state_dict']
     sd = model.state_dict()
     for k in model.state_dict():
