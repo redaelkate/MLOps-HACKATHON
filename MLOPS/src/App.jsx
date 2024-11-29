@@ -59,7 +59,7 @@ function App() {
             <h1 className={`text-2xl font-bold  ml-4`}>Antaeus</h1>
           </div>
           <div>
-            <button className='bg-green-500 hover:bg-gray-500  font-semibold hover:text-gray-100 py-2 px-4 border-2 border-gray-500 hover:border-transparent rounded'>New Chat</button>
+            <button className=' hover:bg-stone-500  font-semibold hover:text-gray-100 py-2 px-4 border-2 border-gray-500 hover:border-transparent rounded'>New Chat</button>
           </div>
         </header>
         <div className='min-h-full w-full md:w-4/5 sm:w-4/5 lg:w-3/5'>
@@ -68,7 +68,7 @@ function App() {
               {messages.map((message, index) => (
                 <span key={index}>
                   <div className=' flex justify-end items-center mb-8 '>
-                    <div className={`${bubbleColor} p-3 rounded-lg   shadow-lg text-gray-800 text-lg max-w-xl text-wrap break-words `}>
+                    <div className={`${bubbleColor} p-3 rounded-lg   shadow-lg text-gray-800 text-lg max-w-xl sm:max-w-fit text-wrap break-words `}>
                       <p>{message}</p>
                     </div>
                     <span> <img src={User} className='rounded-md' width={50} height={50} /> </span>
@@ -87,11 +87,11 @@ function App() {
             </div>
           )}
         </div>
-        <div className={`md:mb-72 ${messages.length === 0 ? '' : 'hidden'} flex-col justify-center items-center`}>
+        <div className={`md:mb-72 ${messages.length === 0 ? '' : 'hidden'} flex-col justify-center items-center `}>
           <img src={Image} width={180} height={180} className='self-center mx-auto' />
-          <div className='flex gap-2'>
+          <div className='flex sm:flex-col md:flex-row gap-2'>
             {FAQ.map((faq, index) => (
-              <div className="max-w-sm rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:transform hover:-translate-y-2 ease-in-out duration-150  " onClick={handleFAQ}>
+              <div className="max-w-sm rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:transform hover:-translate-y-2 ease-in-out duration-150  " key={index} onClick={handleFAQ}>
                 <div className="px-6 py-4">
                   <div className="font-bold text-xl mb-2">{FAQ[index]['Question']}</div>
                   <p className="text-gray-700 text-base">
@@ -107,12 +107,12 @@ function App() {
             ))}
           </div>
         </div>
-        <div className={`flex justify-center items-center fixed bottom-0 right-0  left-0  transform transition-transform duration-800 ease-in-out ${messages.length === 0 ? '-translate-y-56' : 'translate-y-0'} ${color}`}>
+        <div className={`flex justify-center items-center fixed bottom-0 right-0  left-0  transform transition-transform duration-800 ease-in-out ${messages.length === 0 ? '-translate-y-56' : 'translate-y-0'} ${color} sm:bottom-0'`}>
           <input
 
             type="text"
             placeholder="Enter your name"
-            className={`p-2 border-2 mt05 color-gray-300 w-full md:w-3/5 bg-claudeBackground border-orange-30  rounded-3xl mb-0 focus:outline-none text-blue-950 `}
+            className={`p-2 border-2 focus mt05 color-gray-300 w-full md:w-3/5 bg-claudeBackground border-orange-30  rounded-3xl mb-0 focus:outline-none text-blue-950 border-stone-400 focus:border-stone-600 hover:shadow-xl  `}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
           />
@@ -122,10 +122,10 @@ function App() {
         <div className="p-6 pt-28">
           <h2 className="text-xl font-semibold mb-6 ">Navigation</h2>
           <nav >
-            <ul className="space-y-4 mb-6 ">
-              <li><a href="#section1" className="block py-2 hover:bg-gray-100">Section 1</a></li>
-              <li><a href="#section2" className="block py-2 hover:bg-gray-100">Section 2</a></li>
-              <li><a href="#section3" className="block py-2 hover:bg-gray-100">Section 3</a></li>
+            <ul className="space-y-4 mb-6 flex flex-col justify-center">
+              <li><a href="#section1" className="block py-2 hover:bg-gray-100"> <span className="material-icons">account_circle</span> Account</a></li>
+              <li><a href="#section2" className="block py-2 hover:bg-gray-100"> <span className='material-icons'>person</span> Profile</a></li>
+              <li><a href="#section3" className="block py-2 hover:bg-gray-100"> <span className='material-icons'>settings</span>Settings</a></li>
             </ul>
           </nav>
         </div>
