@@ -6,10 +6,11 @@ import User from './assets/user.png';
 function App() {
   const [inputState, setInputState] = useState('');
   const [color, setColor] = useState('bg-claudeBackground');
-  const [textColor, setTextColor] = useState('text-white');
+  /*const [textColor, setTextColor] = useState('text-white');*/
   const [bubbleColor, setBubbleColor] = useState('bg-claudeBubble');
   const [chats, setChats] = useState(0);
   const [messages, setMessages] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [FAQ, setFAQ] = useState([{'Question': 'What is Antaeus?', 'Answer': 'Antaeus is a chatbot that helps you with your queries.'}, {'Question': 'How can I use Antaeus?', 'Answer': 'You can use Antaeus by typing your queries in the chatbox.'},{
     'Question': 'What is the purpose of Antaeus?', 'Answer': 'The purpose of Antaeus is to help you with your queries.'}]);
@@ -48,16 +49,17 @@ function App() {
 
   return (
     <>
+      
       <div className={`flex flex-col justify-between items-center min-h-screen mx-auto `}>
-        <header className={`flex sticky top-0 justify-between items-center px-4 bg-gray-800 w-full p-4 z-10 shadow-md shadow-red-100 ${textColor}`}>
+        <header className={`flex sticky top-0 justify-between items-center px-4 pb-1 bg-claudeBackground w-full  text-gray-800 z-10 shadow-md shadow-gray `}>
           <div className="flex items-center">
-            <button onClick={toggleSidebar} className={`p-2 ${textColor} text-4xl`}>
+            <button onClick={toggleSidebar} className={`p-2  text-4xl`}>
               {isSidebarOpen ? '✕' : '☰'}
             </button>
-            <h1 className={`text-2xl font-bold ${textColor} ml-4`}>Antaeus</h1>
+            <h1 className={`text-2xl font-bold  ml-4`}>Antaeus</h1>
           </div>
           <div>
-            <button className='bg-green-500 hover:bg-gray-500 text-gray-300 font-semibold hover:text-gray-100 py-2 px-4 border-2 border-gray-500 hover:border-transparent rounded'>New Chat</button>
+            <button className='bg-green-500 hover:bg-gray-500  font-semibold hover:text-gray-100 py-2 px-4 border-2 border-gray-500 hover:border-transparent rounded'>New Chat</button>
           </div>
         </header>
         <div className='min-h-full w-full md:w-4/5 sm:w-4/5 lg:w-3/5'>
@@ -74,7 +76,9 @@ function App() {
                   <div className=' flex justify-start items-center mb-8 '>
                     <span> <img src={Image} width={50} height={50} /> </span>
                     <div className={`${bubbleColor} max-w-xl shadow-md text-gray-800 text-wrap break-words p-3  rounded-lg text-lg`}>
-                      <p>{message}</p>
+                      <p>{  
+                        message
+                        }</p>
                     </div>
                   </div>
                 </span>
@@ -114,7 +118,7 @@ function App() {
           />
         </div>
       </div>
-      <div className={`fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 text-gray-800 transform transition-transform duration-300 ease-in-out overflow-y-auto ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed top-0 left-0 h-full w-64 bg-claudeBackground border-r border-gray-200 shadow-md text-gray-800  transform transition-transform duration-300 ease-in-out overflow-y-auto ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-6 pt-28">
           <h2 className="text-xl font-semibold mb-6 ">Navigation</h2>
           <nav >
